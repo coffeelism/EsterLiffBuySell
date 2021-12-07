@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
+  <title>Ester Bot Trade Crypto</title>
+
+  <style>
+    div {
+      margin-bottom: 10px;
+    }
+    label {
+      display: inline-block;
+      width: 150px;
+      text-align: right;
+    }
+
+    .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      -webkit-transition-duration: 0.4s; /* Safari */
+      transition-duration: 0.4s;
+    }
+
+    .button1 {
+      box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+
+    .button2:hover {
+      box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    }
+
+    .group {
+      margin-bottom: 17px;
+    }
+    .group label {
+      font-size: 17px;
+    }
+    .group2 label {
+      font-size: 17px;
+    }
+
+    body {
+      background-image: url('00001.jpg');
+    }
+
+    /* .nav a {
+        -khtml-box-shadow: 10px 10px 5px #888888;
+        -webkit-box-shadow: 10px 10px 5px #888888;
+        -moz-box-shadow: 10px 10px 5px #888888;
+        box-shadow: 10px 10px 5px #888888;
+        padding-left: 35px;
+    } */
+
+    /* #demotext {
+      font-size: 17px;
+      text-shadow: 2px 2px 0px #FFFFFF, 5px 4px 0px rgba(0,0,0,0.15), 6px 5px 4px rgba(6,7,7,0.68);
+      color: #333333;
+      background: #FFFFFF;
+      } */
+
+      /* #demotext {
+      font-size: 17px;
+      text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE, 2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC, 2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE, 5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC, 5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC, 8px 2px 2px rgba(0,0,0,0.11);
+      color: #000000;
+      background: #FFFFFF;
+      } */
+
+  </style>
+
+  <link rel="stylesheet" href="css/style.css" media="all">
+</head>
+
+<body>
+    
+    <br>
+    <div class="group"> 
+      <label for="fname">Exchange:</label> 
+      <select id="exchange" name='exchange' size='2'>
+        <option selected="selected" value='BINANCE'>BINANCE</option>
+        <option value='BITKUB'>BITKUB</option>
+      </select>
+    </div>
+    <!-- <br><br> -->
+    
+    <div class="group"> 
+      <label for="lname">Market Type:</label> 
+      <select id="marketType" name='marketType' size='2'>
+        <option selected="selected" value='SPOT'>SPOT</option>
+        <option value='FUTURE'>FUTURE</option>
+      </select>
+    </div>  
+    <!-- <br><br> -->
+
+    <div class="group"> 
+      <label for="lname">Buy/Sell:</label> 
+      <select id="buySell" name='buySell' size='2'>
+        <option selected="selected" value='BUY'>BUY</option>
+        <option value='SELL'>SELL</option>
+      </select>
+    </div>    
+    <!-- <br><br> -->
+
+    <div class="group"> 
+      <label for="lname">Symbol:</label> <input type="text" id="symbol" name="symbol" value="">
+      <!-- <br><br> -->
+    </div>  
+
+    <div class="group"> 
+      <label for="lname">Position Size:</label> <input type="text" id="positionSize" name="positionSize" value="">
+      <!-- <br><br> -->
+    </div>    
+    
+    <button id="btnSubmit" class="button button1" onclick="sendMsg()">SUBMIT</button>
+
+  
+  
+  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script>
+    
+    async function sendMsg() {
+      
+      //var exchange = document.getElementById("exchange").value
+      //alert(exchange)
+      
+      // var value = document.getElementById("positionSize").value
+      // alert(value)
+
+      var exchange = document.getElementById("exchange").value
+      var marketType = document.getElementById("marketType").value
+      var buySell = document.getElementById("buySell").value
+      var symbol = document.getElementById("symbol").value.toUpperCase()
+      var positionSize = document.getElementById("positionSize").value
+
+      var message = ""
+      if (buySell == "BUY") {
+        message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
+      } else if (buySell == "SELL") {
+        message = exchange + " " + marketType + " " + buySell + " " + symbol
+      }
+
+      // alert(message)
+
+      if (liff.getContext().type !== "none") {
+        await liff.sendMessages([
+          {
+            "type" : "text",
+            "text" : message
+          }
+        ])
+      }
+      
+      liff.closeWindow()
+
+      // if (liff.getContext().type !== "none") {
+      //   await liff.sendMessages([
+      //     {
+      //       "type" : "sticker",
+      //       "stickerId" : 1,
+      //       "packageId" : 1
+      //     },
+      //     {
+      //       "type" : "text",
+      //       "text" : "ทดสอบ"
+      //     }
+      //   ])
+      // }
+      // alert("Message Sent")
+    }
+
+    async function main() {
+      // alert("TEST8-2 - getContext")
+      // alert("TEST20")
+      await liff.init({ liffId: "1656688551-qvQXDjzW" })
+
+      var paramBuySell = location.search.split('buysell=')[1]
+      // alert(myParam)
+      document.getElementById("buySell").value = paramBuySell.toUpperCase()
+
+      // getEnvironment()
+      // getUserProfile()
+      // getContext()
+      // getFriendship()
+      // createUniversalLink()
+    }
+    main()
+  </script>
+</body>
+</html>
