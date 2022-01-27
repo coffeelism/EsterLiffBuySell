@@ -188,6 +188,11 @@
       // alert(myParam)
       document.getElementById("buySell").value = paramBuySell.toUpperCase()
 
+	  if (paramBuySell == "CLOSE") {
+		  document.getElementById("exchange").value = 'BINANCE'
+ 		  document.getElementById("marketType").value = 'FUTURE'
+	  }
+
       // getEnvironment()
       // getUserProfile()
       // getContext()
