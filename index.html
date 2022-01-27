@@ -105,7 +105,7 @@
       <select id="buySell" name='buySell' size='3'>
         <option selected="selected" value='BUY'>BUY</option>
         <option value='SELL'>SELL</option>
-        <option value='SELL'>CLOSE</option>
+        <option value='CLOSE'>CLOSE</option>
       </select>
     </div>    
     <!-- <br><br> -->
@@ -145,6 +145,8 @@
       if (buySell == "BUY") {
         message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
       } else if (buySell == "SELL") {
+        message = exchange + " " + marketType + " " + buySell + " " + symbol
+      } else if (buySell == "CLOSE") {
         message = exchange + " " + marketType + " " + buySell + " " + symbol
       }
 
