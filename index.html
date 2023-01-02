@@ -84,9 +84,10 @@
     <br>
     <div class="group"> 
       <label for="fname">Exchange:</label> 
-      <select id="exchange" name='exchange' size='2'>
-        <option selected="selected" value='BINANCE'>BINANCE</option>
-        <option value='BITKUB'>BITKUB</option>
+      <select id="exchange" name='exchange' size='3'>
+        <option selected="selected" value='TFEX'>TFEX</option>
+        <option value='BINANCE'>BINANCE</option>
+		<option value='BITKUB'>BITKUB</option>
       </select>
     </div>
     <!-- <br><br> -->
@@ -94,16 +95,23 @@
     <div class="group"> 
       <label for="lname">Market Type:</label> 
       <select id="marketType" name='marketType' size='2'>
-        <option selected="selected" value='SPOT'>SPOT</option>
+        <option selected="selected" value='DT'>DAY TRADE</option>
+		<option value='RT'>RUN TREND</option>
         <option value='FUTURE'>FUTURE</option>
+		<option value='SPOT'>SPOT</option>
       </select>
     </div>  
     <!-- <br><br> -->
 
     <div class="group"> 
-      <label for="lname">Buy/Sell/Close:</label> 
+      <label for="lname">Buy/Sell/Close/Swap:</label> 
       <select id="buySell" name='buySell' size='3'>
-        <option selected="selected" value='BUY'>BUY</option>
+        <option selected="selected" value='SWAP'>SWAP</option>
+		<option value='OPEN LONG'>OPEN LONG</option>
+		<option value='CLOSE SHORT'>CLOSE SHORT</option>
+		<option value='OPEN SHORT'>OPEN SHORT</option>
+		<option value='CLOSE LONG'>CLOSE LONG</option>
+		<option value='BUY'>BUY</option>
         <option value='SELL'>SELL</option>
         <option value='CLOSE'>CLOSE</option>
       </select>
@@ -111,7 +119,7 @@
     <!-- <br><br> -->
 
     <div class="group"> 
-      <label for="lname">Symbol:</label> <input type="text" id="symbol" name="symbol" value="">
+      <label for="lname">Symbol:</label> <input type="text" id="symbol" name="symbol" value="S50">
       <!-- <br><br> -->
     </div>  
 
@@ -142,10 +150,20 @@
       var positionSize = document.getElementById("positionSize").value
 
       var message = ""
-      if (buySell == "BUY") {
+      if (buySell == "OPEN LONG") {
+		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
+	  } else if (buySell == "CLOSE SHORT") {
+		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
+	  } else if (buySell == "OPEN SHORT") {
+		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
+	  } else if (buySell == "CLOSE LONG") {
+		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
+	  } else if (buySell == "SWAP") {
+		message = exchange + " " + marketType + " " + buySell
+	  } else if (buySell == "BUY") {
         message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
       } else if (buySell == "SELL") {
-        message = exchange + " " + marketType + " " + buySell + " " + symbol
+        message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
       } else if (buySell == "CLOSE") {
         message = exchange + " " + marketType + " " + buySell + " " + symbol
       }
@@ -186,11 +204,11 @@
 
       var paramBuySell = location.search.split('buysell=')[1]
       // alert(myParam)
-      document.getElementById("buySell").value = paramBuySell.toUpperCase()
+      document.getElementById("buySell").value = 'SWAP'//paramBuySell.toUpperCase()
 
 	  if (paramBuySell == "CLOSE") {
-		  document.getElementById("exchange").value = 'BINANCE'
- 		  document.getElementById("marketType").value = 'FUTURE'
+		  document.getElementById("exchange").value = 'TFEX'
+ 		  document.getElementById("marketType").value = 'DT'
 	  }
 
       // getEnvironment()
