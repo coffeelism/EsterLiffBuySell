@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover">
-  <title>Ester Bot TFEX</title>
+  <title>Ester Bot Forex</title>
 
   <style>
     div {
@@ -83,54 +83,46 @@
     
     <br>
     <div class="group"> 
-      <label for="fname">Exchange:</label> 
-      <select id="exchange" name='exchange' size='3'>
-        <option selected="selected" value='TFEX'>TFEX</option>
-        <option value='BINANCE'>BINANCE</option>
-		<option value='BITKUB'>BITKUB</option>
+      <label for="fname">Action : </label> 
+      <select id="action" name='action' size='3'>
+        <option selected="selected" value='OPEN'>OPEN</option>
+        <option value='MODIFY'>MODIFY</option>
+		<option value='CANCEL'>CANCEL</option>
       </select>
     </div>
     <!-- <br><br> -->
     
     <div class="group"> 
-      <label for="lname">Market Type:</label> 
-      <select id="marketType" name='marketType' size='2'>
-        <option selected="selected" value='DT'>DAY TRADE</option>
-		<option value='RT'>RUN TREND</option>
-        <option value='FUTURE'>FUTURE</option>
-		<option value='SPOT'>SPOT</option>
+      <label for="lname">Type : </label> 
+      <select id="type" name='type' size='2'>
+        <option selected="selected" value='BUY'>BUY</option>
+		<option value='SELL'>SELL</option>
       </select>
     </div>  
     <!-- <br><br> -->
 
     <div class="group"> 
-      <label for="lname">Buy/Sell/Close/Swap:</label> 
-      <select id="buySell" name='buySell' size='3'>
-        <option selected="selected" value='SWAP'>SWAP</option>
-		<option value='OPEN LONG'>OPEN LONG</option>
-		<option value='CLOSE SHORT'>CLOSE SHORT</option>
-		<option value='OPEN SHORT'>OPEN SHORT</option>
-		<option value='CLOSE LONG'>CLOSE LONG</option>
-		<option value='BUY'>BUY</option>
-        <option value='SELL'>SELL</option>
-        <option value='CLOSE'>CLOSE</option>
-      </select>
-    </div>    
-    <!-- <br><br> -->
-
-    <div class="group"> 
-      <label for="lname">Symbol:</label> <input type="text" id="symbol" name="symbol" value="S50">
+      <label for="lname">Group ID : </label> <input type="text" id="groupID" name="groupID" value="1">
       <!-- <br><br> -->
     </div>  
 
     <div class="group"> 
-      <label for="lname">Position Size:</label> <input type="text" id="positionSize" name="positionSize" value="">
+      <label for="lname">Start Price : </label> <input type="text" id="startPrice" name="startPrice" value="">
       <!-- <br><br> -->
-    </div>    
+    </div>   
+	
+	<div class="group"> 
+      <label for="lname">Stop Price : </label> <input type="text" id="stopPrice" name="stopPrice" value="">
+      <!-- <br><br> -->
+    </div>   
+
+	<div class="group"> 
+      <label for="lname">Step : </label> <input type="text" id="step" name="step" value="">
+      <!-- <br><br> -->
+    </div>   
     
     <button id="btnSubmit" class="button button1" onclick="sendMsg()">SUBMIT</button>
 
-  
   
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
   <script>
@@ -143,12 +135,13 @@
       // var value = document.getElementById("positionSize").value
       // alert(value)
 
-      var exchange = document.getElementById("exchange").value
-      var marketType = document.getElementById("marketType").value
-      var buySell = document.getElementById("buySell").value
-      var symbol = document.getElementById("symbol").value.toUpperCase()
-      var positionSize = document.getElementById("positionSize").value
-
+      var action = document.getElementById("action").value
+      var type = document.getElementById("type").value
+      var groupID = document.getElementById("groupID").value
+      var startPrice = document.getElementById("startPrice").value
+	  var stopPrice = document.getElementById("stopPrice").value
+	  var step = document.getElementById("step").value
+     
       var message = ""
       if (buySell == "OPEN LONG") {
 		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
@@ -202,14 +195,15 @@
       // alert("TEST20")
       await liff.init({ liffId: "1656688551-qvQXDjzW" })
 
-      var paramBuySell = location.search.split('buysell=')[1]
-      // alert(myParam)
-      document.getElementById("buySell").value = 'SWAP'//paramBuySell.toUpperCase()
+      //var paramBuySell = location.search.split('buysell=')[1]
+      
+	  // alert(myParam)
+      //document.getElementById("buySell").value = 'SWAP'//paramBuySell.toUpperCase()
 
-	  if (paramBuySell == "CLOSE") {
-		  document.getElementById("exchange").value = 'TFEX'
- 		  document.getElementById("marketType").value = 'DT'
-	  }
+	  //if (paramBuySell == "CLOSE") {
+		  //document.getElementById("exchange").value = 'TFEX'
+ 		  //document.getElementById("marketType").value = 'DT'
+	  //}
 
       // getEnvironment()
       // getUserProfile()
