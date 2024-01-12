@@ -143,24 +143,16 @@
 	  var step = document.getElementById("step").value
      
       var message = ""
-      if (buySell == "OPEN LONG") {
-		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
-	  } else if (buySell == "CLOSE SHORT") {
-		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
-	  } else if (buySell == "OPEN SHORT") {
-		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
-	  } else if (buySell == "CLOSE LONG") {
-		message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
-	  } else if (buySell == "SWAP") {
-		message = exchange + " " + marketType + " " + buySell
-	  } else if (buySell == "BUY") {
-        message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
-      } else if (buySell == "SELL") {
-        message = exchange + " " + marketType + " " + buySell + " " + symbol + " SIZE " + positionSize
-      } else if (buySell == "CLOSE") {
-        message = exchange + " " + marketType + " " + buySell + " " + symbol
-      }
+      var message = ""
+      if (action == "OPEN") {
+		message = action + " " + type + " " + groupID + " " + startPrice + " " + stopPrice + " " + step 
+	  } else if (action == "MODIFY") {
+		message = action + " " + type + " " + groupID + " " + startPrice + " " + stopPrice
+	  } else if (action == "CANCEL") {
+		message = action + " " + type + " " + groupID 
+	  } 
 
+	 
       // alert(message)
 
       if (liff.getContext().type !== "none") {
