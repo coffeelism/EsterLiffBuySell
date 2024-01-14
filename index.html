@@ -101,6 +101,11 @@
     </div>  
     <!-- <br><br> -->
 
+	<div class="group"> 
+      <label for="lname">Lot Size : </label> <input type="text" id="lotSize" name="lotSize" value="1">
+      <!-- <br><br> -->
+    </div>  
+
     <div class="group"> 
       <label for="lname">Group ID : </label> <input type="text" id="groupID" name="groupID" value="1">
       <!-- <br><br> -->
@@ -154,7 +159,6 @@
 	  var takeProfit = document.getElementById("takeProfit").value
 	  var stopLoss = document.getElementById("stopLoss").value
      
-      var message = ""
       var message = ""
       if (action == "OPEN") {
 		message = action + " " + type + " " + groupID + " " + startPrice + " " + stopPrice + " " + step + " " + takeProfit + " " + stopLoss 
