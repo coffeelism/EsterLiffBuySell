@@ -82,8 +82,17 @@
 <body>
     
 	<br>
-
     <br>
+
+	<div class="group"> 
+      <label for="fname">Symbol : </label> 
+      <select id="symbol" name='symbol' size='2'>
+        <option selected="selected" value='XAUUSD'>XAUUSD</option>
+        <option value='USOIL'>USOIL</option>
+      </select>
+    </div>
+    <!-- <br><br> -->
+
     <div class="group"> 
       <label for="fname">Action : </label> 
       <select id="action" name='action' size='3'>
@@ -158,6 +167,7 @@
       // var value = document.getElementById("positionSize").value
       // alert(value)
 
+      var symbol = document.getElementById("symbol").value
       var action = document.getElementById("action").value
       var type = document.getElementById("type").value
       var groupID = document.getElementById("groupID").value
@@ -170,11 +180,11 @@
      
       var message = ""
       if (action == "OPEN") {
-		message = action + " " + type + " " + lotSize + " " + groupID + " " + startPrice + " " + stopPrice + " " + step + " " + takeProfit + " " + stopLoss 
+		message = symbol + " " + action + " " + type + " " + lotSize + " " + groupID + " " + startPrice + " " + stopPrice + " " + step + " " + takeProfit + " " + stopLoss 
 	  } else if (action == "MODIFY") {
-		message = action + " " + type + " " + groupID + " " + takeProfit + " " + stopLoss
+		message = symbol + " " + action + " " + type + " " + groupID + " " + takeProfit + " " + stopLoss
 	  } else if (action == "CANCEL") {
-		message = action + " " + type + " " + groupID 
+		message = symbol + " " + action + " " + type + " " + groupID 
 	  } 
 
 	 
