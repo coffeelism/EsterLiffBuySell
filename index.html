@@ -114,6 +114,11 @@
 	<hr />
 
 	<div class="group"> 
+      <label for="lname">Group (Zone) : </label> <input type="text" id="groupZone" name="groupZone" value="1">
+      <!-- <br><br> -->
+    </div>
+
+	<div class="group"> 
       <label for="lname">Lot Size : </label> <input type="text" id="lotSize" name="lotSize" value="0.1">
       <!-- <br><br> -->
     </div>  
@@ -182,6 +187,7 @@
       var action = document.getElementById("action").value
       var type = document.getElementById("type").value
       var groupID = document.getElementById("groupID").value
+	  var groupZone = document.getElementById("groupZone").value
 	  var lotSize = document.getElementById("lotSize").value
       var startPrice = document.getElementById("startPrice").value
 	  var stopPrice = document.getElementById("stopPrice").value
