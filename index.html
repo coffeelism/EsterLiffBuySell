@@ -88,176 +88,38 @@
 	<div class="group"> 
       <label for="fname">Symbol : </label> 
       <select id="symbol" name='symbol' size='2'>
-        <option selected="selected" value='XAUUSD'>XAUUSD</option>
+        <option selected="selected" value='GRID GOLD USD'>GRID GOLD USD</option>
         <option value='USOIL'>USOIL</option>
       </select>
     </div>
     <!-- <br><br> -->
 
-    <div class="group"> 
-      <label for="fname">Action : </label> 
-      <select id="action" name='action' size='3'>
-        <option selected="selected" value='OPEN'>OPEN</option>
-        <option value='MODIFY'>MODIFY</option>
-		<option value='CANCEL'>CANCEL</option>
-      </select>
-    </div>
-    <!-- <br><br> -->
-    
-    <div class="group"> 
-      <label for="lname">Type : </label> 
-      <select id="type" name='type' size='2'>
-        <option selected="selected" value='BUY'>BUY</option>
-		<option value='SELL'>SELL</option>
-      </select>
-    </div>  
-    <!-- <br><br> -->
-
-	<hr />
+    <hr />
 
 	<div class="group"> 
-      <label for="lname">Group (Zone) : </label> <input type="text" id="groupZone" name="groupZone" value="1">
+      <label for="lname">Upper Zone : </label> <input type="text" id="groupZone" name="groupZone" value="2400">
       <!-- <br><br> -->
     </div>
 
 	<div class="group"> 
-      <label for="lname">Lot Size : </label> <input type="text" id="lotSize" name="lotSize" value="0.1">
+      <label for="lname">Lower Zone : </label> <input type="text" id="lotSize" name="lotSize" value="2000">
       <!-- <br><br> -->
     </div>  
 
-	<!-- 
-    <div class="group"> 
-      <label for="lname">Group ID : </label> <input type="text" id="groupID" name="groupID" value="1">
-      < ! -- <br><br> -- >
-    </div>
-	-->
-
-	 <div class="group"> 
-      <label for="fname">Protection : </label> 
-      <select id="groupID" name='groupID' size='4'>
-        <option selected="selected" value=1>DEFAULT BY EA</option>
-        <option value=2>FORCE BREAKEVEN POINT</option>
-		<option value=3>FORCE TRAILING STOP</option>
-		<option value=0>NONE</option>
-      </select>
-    </div>
-
-	<hr />
-
-    <div class="group"> 
-      <label for="lname">Start Price : </label> <input type="text" id="startPrice" name="startPrice" value="">
+	<div class="group"> 
+      <label for="lname">Number of Trade : </label> <input type="text" id="startPrice" name="startPrice" value="30">
       <!-- <br><br> -->
     </div>   
 	
 	<div class="group"> 
-      <label for="lname">Stop Price : </label> <input type="text" id="stopPrice" name="stopPrice" value="">
+      <label for="lname">Lot Start : </label> <input type="text" id="stopPrice" name="stopPrice" value="0.01">
       <!-- <br><br> -->
     </div>   
 
-	<div class="group"> 
-      <label for="lname">Step : </label> <input type="text" id="step" name="step" value="50">
-      <!-- <br><br> -->
-    </div>
-	
-	<hr />
-
-	<div class="group"> 
-      <label for="lname">Take Profit : </label> <input type="text" id="takeProfit" name="takeProfit" value="">
-      <!-- <br><br> -->
-    </div>   
-	
-	<div class="group"> 
-      <label for="lname">Stop Loss : </label> <input type="text" id="stopLoss" name="stopLoss" value="">
-      <!-- <br><br> -->
-    </div>   
     
-    <button id="btnSubmit" class="button button1" onclick="sendMsg()">SUBMIT</button>
+    <button id="btnSubmit" class="button button1" onclick="">CALCULATE</button>
 
   
-  <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-  <script>
-    
-    async function sendMsg() {
-      
-      //var exchange = document.getElementById("exchange").value
-      //alert(exchange)
-      
-      // var value = document.getElementById("positionSize").value
-      // alert(value)
-
-      var symbol = document.getElementById("symbol").value
-      var action = document.getElementById("action").value
-      var type = document.getElementById("type").value
-      var groupID = document.getElementById("groupID").value
-	  var groupZone = document.getElementById("groupZone").value
-	  var lotSize = document.getElementById("lotSize").value
-      var startPrice = document.getElementById("startPrice").value
-	  var stopPrice = document.getElementById("stopPrice").value
-	  var step = document.getElementById("step").value
-	  var takeProfit = document.getElementById("takeProfit").value
-	  var stopLoss = document.getElementById("stopLoss").value
-     
-      var message = ""
-      if (action == "OPEN") {
-		message = symbol + " " + action + " " + type + " " + lotSize + " " + groupID + " " + startPrice + " " + stopPrice + " " + step + " " + takeProfit + " " + stopLoss 
-	  } else if (action == "MODIFY") {
-		message = symbol + " " + action + " " + type + " " + groupID + " " + takeProfit + " " + stopLoss
-	  } else if (action == "CANCEL") {
-		message = symbol + " " + action + " " + type + " " + groupID 
-	  } 
-
-	 
-      // alert(message)
-
-      if (liff.getContext().type !== "none") {
-        await liff.sendMessages([
-          {
-            "type" : "text",
-            "text" : message
-          }
-        ])
-      }
-      
-      liff.closeWindow()
-
-      // if (liff.getContext().type !== "none") {
-      //   await liff.sendMessages([
-      //     {
-      //       "type" : "sticker",
-      //       "stickerId" : 1,
-      //       "packageId" : 1
-      //     },
-      //     {
-      //       "type" : "text",
-      //       "text" : "ทดสอบ"
-      //     }
-      //   ])
-      // }
-      // alert("Message Sent")
-    }
-
-    async function main() {
-      // alert("TEST8-2 - getContext")
-      // alert("TEST20")
-      await liff.init({ liffId: "1656688551-qvQXDjzW" })
-
-      //var paramBuySell = location.search.split('buysell=')[1]
-      
-	  // alert(myParam)
-      //document.getElementById("buySell").value = 'SWAP'//paramBuySell.toUpperCase()
-
-	  //if (paramBuySell == "CLOSE") {
-		  //document.getElementById("exchange").value = 'TFEX'
- 		  //document.getElementById("marketType").value = 'DT'
-	  //}
-
-      // getEnvironment()
-      // getUserProfile()
-      // getContext()
-      // getFriendship()
-      // createUniversalLink()
-    }
-    main()
-  </script>
+ 
 </body>
 </html>
